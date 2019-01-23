@@ -60,6 +60,41 @@ resource "aws_elasticsearch_domain" "es" {
   tags = "${module.label.tags}"
 }
 
+# Create default read-only policy for whole domain
+data "aws_iam_policy_document" "read" {
+  statement {
+    actions = ["es:ESHttpGet"]
+
+    resources = [
+      "${aws_elasticsearch_domain.es.arn}/*",
+    ]
+  }
+}
+
+resource "aws_iam_policy" "read" {
+  name        = "${module.label.name}-default-read"
+  description = "Policy to allow read only access to ES domain"
+  policy      = "${data.aws_iam_policy_document.read.json}"
+}
+
+# Create default write policy for whole domain
+
+data "aws_iam_policy_document" "write" {
+  statement {
+    actions = ["es:ESHttp*"]
+
+    resources = [
+      "${aws_elasticsearch_domain.es.arn}/*",
+    ]
+  }
+}
+
+resource "aws_iam_policy" "write" {
+  name        = "${module.label.name}-default-write"
+  description = "Policy to allow write access to ES domain"
+  policy      = "${data.aws_iam_policy_document.write.json}"
+}
+
 /* Ignore creating Route53 entries for now
     1. We aren't using kibana
     2. We can't use our own certificate with an AWS ES domain endpoint

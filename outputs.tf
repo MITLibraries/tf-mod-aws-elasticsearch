@@ -19,8 +19,18 @@ output "endpoint" {
 }
 
 output "kibana_endpoint" {
-  value       = "${aws_elasticsearch_domain.es.kibana_endpoint}"
   description = "Domain-specific endpoint for Kibana without https scheme"
+  value       = "${aws_elasticsearch_domain.es.kibana_endpoint}"
+}
+
+output "read_policy_arn" {
+  description = "Default domain read only policy ARN"
+  value       = "${aws_iam_policy.read.arn}"
+}
+
+output "write_policy_arn" {
+  description = "Default domain write policy ARN"
+  value       = "${aws_iam_policy.write.arn}"
 }
 
 /*

@@ -1,7 +1,9 @@
 This module is used to created an AWS Elasticsearch Domain per environment (workspace).
 
-IAM roles and access are not created with this module like many other similar modules.
-All IAM access should be assigned to users (separately), not via the ES domain.
+A default read and write policy are created and the ARN of each is outputted.
+When possible, create more restrictive policies (per index) for security.
+
+IAM roles and users are not created by this module like many other similar modules. All IAM access should be assigned to users (separately outside of the module), not via the ES domain.
 
 ## Inputs
 
@@ -37,3 +39,5 @@ All IAM access should be assigned to users (separately), not via the ES domain.
 | domain\_id | Unique identifier for the domain |
 | domain\_name | Domain name of cluster |
 | endpoint | Domain-specific endpoint used to submit index, search, and data upload requests |
+| read\_policy\_arn | Default domain read only policy ARN |
+| write\_policy\_arn| Default domain write policy ARN |
