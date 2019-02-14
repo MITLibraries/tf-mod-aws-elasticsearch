@@ -114,6 +114,34 @@ resource "aws_iam_policy" "write" {
   policy      = "${data.aws_iam_policy_document.write.json}"
 }
 
+resource "aws_cloudwatch_log_resource_policy" "es_logs" {
+  policy_name = "${module.label.name}-ES-Logs"
+
+  policy_document = <<CONFIG
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "es.amazonaws.com"
+      },
+      "Action": [
+        "logs:PutLogEvents",
+        "logs:PutLogEventsBatch",
+        "logs:CreateLogStream"
+      ],
+      "Resource": [
+        "${aws_cloudwatch_log_group.slow_index.arn}",
+        "${aws_cloudwatch_log_group.slow_search.arn}",
+        "${aws_cloudwatch_log_group.application.arn}"
+      ]
+    }
+  ]
+}
+CONFIG
+}
+
 /* Ignore creating Route53 entries for now
     1. We aren't using kibana
     2. We can't use our own certificate with an AWS ES domain endpoint
