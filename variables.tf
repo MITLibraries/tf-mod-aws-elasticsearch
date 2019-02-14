@@ -77,24 +77,6 @@ variable "log_publishing_application_enabled" {
   description = "Specifies whether log publishing option for ES_APPLICATION_LOGS is enabled or not"
 }
 
-variable "log_publishing_index_cloudwatch_log_group_arn" {
-  type        = "string"
-  default     = ""
-  description = "ARN of the CloudWatch log group to which log for INDEX_SLOW_LOGS needs to be published"
-}
-
-variable "log_publishing_search_cloudwatch_log_group_arn" {
-  type        = "string"
-  default     = ""
-  description = "ARN of the CloudWatch log group to which log for SEARCH_SLOW_LOGS  needs to be published"
-}
-
-variable "log_publishing_application_cloudwatch_log_group_arn" {
-  type        = "string"
-  default     = ""
-  description = "ARN of the CloudWatch log group to which log for ES_APPLICATION_LOGS needs to be published"
-}
-
 variable "advanced_options" {
   type        = "map"
   default     = {}

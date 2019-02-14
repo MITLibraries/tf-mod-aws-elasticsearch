@@ -4,6 +4,25 @@ module "label" {
   tags   = "${var.tags}"
 }
 
+# Create log groups for our cluster to use
+resource "aws_cloudwatch_log_group" "slow_index" {
+  name              = "${module.label.name}-slow-index-logs"
+  tags              = "${module.label.tags}"
+  retention_in_days = 30
+}
+
+resource "aws_cloudwatch_log_group" "slow_search" {
+  name              = "${module.label.name}-slow-search-logs"
+  tags              = "${module.label.tags}"
+  retention_in_days = 30
+}
+
+resource "aws_cloudwatch_log_group" "application" {
+  name              = "${module.label.name}-application-logs"
+  tags              = "${module.label.tags}"
+  retention_in_days = 30
+}
+
 # Elasticsearch domain
 
 resource "aws_elasticsearch_domain" "es" {
@@ -42,19 +61,19 @@ resource "aws_elasticsearch_domain" "es" {
   log_publishing_options {
     enabled                  = "${var.log_publishing_index_enabled }"
     log_type                 = "INDEX_SLOW_LOGS"
-    cloudwatch_log_group_arn = "${var.log_publishing_index_cloudwatch_log_group_arn}"
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.slow_index.arn}"
   }
 
   log_publishing_options {
     enabled                  = "${var.log_publishing_search_enabled }"
     log_type                 = "SEARCH_SLOW_LOGS"
-    cloudwatch_log_group_arn = "${var.log_publishing_search_cloudwatch_log_group_arn}"
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.slow_search.arn}"
   }
 
   log_publishing_options {
     enabled                  = "${var.log_publishing_application_enabled }"
     log_type                 = "ES_APPLICATION_LOGS"
-    cloudwatch_log_group_arn = "${var.log_publishing_application_cloudwatch_log_group_arn}"
+    cloudwatch_log_group_arn = "${aws_cloudwatch_log_group.application.arn}"
   }
 
   tags = "${module.label.tags}"
