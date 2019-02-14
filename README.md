@@ -19,14 +19,11 @@ IAM roles and users are not created by this module like many other similar modul
 | instance\_count | Number of data nodes in the cluster (default 3) | string | `3` | no |
 | instance\_type | ES instance type for data nodes in the cluster (default t2.small.elasticsearch) | string | `t2.small.elasticsearch` | no |
 | kms\_key\_id | KMS key used for elasticsearch | string | `` | no |
-| log\_publishing\_application\_cloudwatch\_log\_group\_arn | ARN of the CloudWatch log group to which log for ES_APPLICATION_LOGS needs to be published | string | `` | no |
 | log\_publishing\_application\_enabled | Specifies whether log publishing option for ES_APPLICATION_LOGS is enabled or not | string | `false` | no |
-| log\_publishing\_index\_cloudwatch\_log\_group\_arn | ARN of the CloudWatch log group to which log for INDEX_SLOW_LOGS needs to be published | string | `` | no |
 | log\_publishing\_index\_enabled | Specifies whether log publishing option for INDEX_SLOW_LOGS is enabled or not | string | `false` | no |
-| log\_publishing\_search\_cloudwatch\_log\_group\_arn | ARN of the CloudWatch log group to which log for SEARCH_SLOW_LOGS  needs to be published | string | `` | no |
 | log\_publishing\_search\_enabled | Specifies whether log publishing option for SEARCH_SLOW_LOGS is enabled or not | string | `false` | no |
 | name | Solution name, e.g. 'app' or 'jenkins' | string | `app` | no |
-|node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | string | `true` | no |
+| node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | string | `true` | no |
 | snapshot\_start\_hour | Hour at which automated snapshots are taken, in UTC (default 0) | string | `0` | no |
 | tags | tags to apply to all resources | map | `<map>` | no |
 
