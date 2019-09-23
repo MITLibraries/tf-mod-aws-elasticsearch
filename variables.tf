@@ -49,7 +49,7 @@ variable "kms_key_id" {
 }
 
 variable "node_to_node_encryption_enabled" {
-  type        = "string"
+  type        = string
   default     = "true"
   description = "Whether to enable node-to-node encryption"
 }
@@ -60,32 +60,32 @@ variable "snapshot_start_hour" {
 }
 
 variable "log_publishing_index_enabled" {
-  type        = "string"
+  type        = string
   default     = "false"
   description = "Specifies whether log publishing option for INDEX_SLOW_LOGS is enabled or not"
 }
 
 variable "log_publishing_search_enabled" {
-  type        = "string"
+  type        = string
   default     = "false"
   description = "Specifies whether log publishing option for SEARCH_SLOW_LOGS is enabled or not"
 }
 
 variable "log_publishing_application_enabled" {
-  type        = "string"
+  type        = string
   default     = "false"
   description = "Specifies whether log publishing option for ES_APPLICATION_LOGS is enabled or not"
 }
 
 variable "advanced_options" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "Key-value string pairs to specify advanced configuration options"
 }
 
 variable "tags" {
   description = "tags to apply to all resources"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
@@ -96,4 +96,3 @@ variable "dns_zone_id" {
   description = "Route53 DNS Zone ID to add hostname records for Elasticsearch domain and Kibana"
 }
 */
-
