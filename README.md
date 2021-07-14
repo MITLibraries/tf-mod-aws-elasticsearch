@@ -5,6 +5,8 @@ When possible, create more restrictive policies (per index) for security.
 
 IAM roles and users are not created by this module like many other similar modules. All IAM access should be assigned to users (separately outside of the module), not via the ES domain.
 
+Note: Name must start with a lowercase alphabet and be at least 3 and no more than 28 characters long. Valid characters are a-z (lowercase letters), 0-9, and - (hyphen).
+
 ## Modules
 
 | Name | Source | Version |
