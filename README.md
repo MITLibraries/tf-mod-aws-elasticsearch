@@ -5,6 +5,12 @@ When possible, create more restrictive policies (per index) for security.
 
 IAM roles and users are not created by this module like many other similar modules. All IAM access should be assigned to users (separately outside of the module), not via the ES domain.
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| label | [github.com/mitlibraries/tf-mod-name](https://github.com/mitlibraries/tf-mod-name) | 0.13 |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
